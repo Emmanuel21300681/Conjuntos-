@@ -201,13 +201,43 @@ def main():
 
                     match opcion_submenu:
                         case 1:
-                            print("La intersección de A y B es: ", interseccion(A, B))
+                            print("La intersección de A y B es: ", interseccion(set(A), set(B)))
                         case 2:
-                            print("[Esqueleto] Aquí va la lógica de la opción 2.")
+                            print("La unión de A y B es: ", union(set(A), set(B)))
                         case 3:
-                            print("[Esqueleto] Aquí va la lógica de la opción 3.")
+                            print("La diferencia de A - B es: ", diferencia(set(A), set(B)))
                         case 4:
-                            print("[Esqueleto] Aquí va la lógica de la opción 4.")
+                            print("La diferencia de B - A es: ", diferencia(set(B), set(A)))
+                        case 5:
+                            pass
+                        case 6:
+                            pass
+                        case 7:
+                            pass
+                        case 8:
+                            pass
+                        case 9:
+                            pass
+                        case 10:
+                            pass
+                        case 11:
+                            pass
+                        case 12:
+                            pass
+                        case 13:
+                            pass
+                        case 14:
+                            pass
+                        case 15:
+                            pass
+                        case 16:
+                            pass
+                        case 17:
+                            pass
+                        case 18:
+                            pass
+                        case 19:
+                            pass
                         case 0:
                             print("Regresando al menú principal...")
                             break
