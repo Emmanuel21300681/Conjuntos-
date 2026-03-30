@@ -2,33 +2,36 @@ import random
 
 
 def ingresar_conjunto(nombre: str) -> list:
-    while True:
-        try:
+    while True:#Se usa un while true para que el usuario pueda ingresar el número de elementos del conjunto
+        try:#Aquí se verifica que el usuario ingrese un número entero válido 
             longitud = int(input(f"¿Cuántos elementos tendrá el conjunto {nombre}? "))
-            if longitud < 1:
+            if longitud < 1:#Si la longitud es menor a 1, se muestra un error y se vuelve a pedir
                 print("La longitud debe ser al menos 1.")
                 continue
-            break
+            break#Se sale del bucle si se ingresa un número válido
         except ValueError:
             print("Ingresa un número entero válido.")
 
-    elementos = []
+    elementos = []#Aqui se crea una lista para almacenar los elementos del conjunto
     print(f"Ingresa los {longitud} elementos del conjunto {nombre}:")
 
-    for i in range(longitud):
+    for i in range(longitud):#Se crea un bucle para que el usuario ingrese cada elemento del conjunto según la longitud de este
         while True:
-            try:
-                valor = int(input(f"  Elemento {i + 1}: "))
-                elementos.append(valor)
+            try:#Aqui como anteriormente se hace, se verifica que sea un número entero válido
+                valor = int(input(f"  Elemento {i + 1}: "))#Aquí se ingresa el dato y se almacena en valor, y aumenta el contador de i
+                elementos.append(valor)#Se agrega el valor a la lista de elementos del conjunto
                 break
             except ValueError:
                 print("  Ingresa un número entero válido.")
 
-    return elementos
+    return elementos#Finalmente se retorna la lista
 
 
-def generar_conjunto_aleatorio(cantidad: int = 5, rango: tuple = (1, 50)) -> list:
-    return [random.randint(rango[0], rango[1]) for _ in range(cantidad)]
+def generar_conjunto_aleatorio(cantidad: int = 5, rango: tuple = (1, 100)) -> list:#Se generan dos conjuntos con números aleatorios
+    #Usando la importación de random, se genera una lista de números aleatorios dentro del rango de (1-100)
+    return [random.randint(rango[0], rango[1]) for _ in range(cantidad)]#Aquí se genera una lista de números aleatorios
+    #Usando una comprensión de listas, se genera una lista de números aleatorios con la cantidad especificada y el rango dado
+    #La comprensión de listas itera la cantidad de veces especificada y genera un número aleatorio en cada iteración, que se agrega a la lista resultante
 
 
 def mostrar_conjuntos(A: list, B: list):
@@ -42,18 +45,37 @@ def cardinalidad(A: list, B: list):
     print(f"Cardinalidad de A: {cardA}")
     print(f"Cardinalidad de B: {cardB}")
 
-
+"""
+Función de intersección que utiliza los dos conjuntos A y B y 
+hace la intersección de ambos conjuntos utilizando el operador &
+y luego la retorna como resultado.
+El operador & lo que hace es comparar ambos y solo tomar los elementos que están en los dos conjuntos,
+"""
 def interseccion(A: list, B: list) -> list:
     interseccion = A & B
     return interseccion
 
+
+"""
+Función de unión que de los dos conjuntos A y B usa el operador de |
+que lo que hace es comparar los conjuntos y tomar los elementos que 
+están en A, en B o en ambos y retona la union de ambos.
+"""
 def union(A: list, B: list) -> list:
     union = A | B
     return union
 
+"""
+En la función de diferencia se toman los dos conjuntos A y B y se utiliza 
+el operador de - para obtener la diferencia, lo que hace el operador es comparar 
+ambos conjuntos y tomar los elementos que están en A pero no en B, y luego se retorna la diferencia.
+"""
 def diferencia(A: list, B: list) -> list:
     diferencia = A - B
     return diferencia
+
+def analisis16(A: list, B: list):
+    pass
 
 def menu_principal() -> int:
     print("\nMenú principal")
@@ -115,7 +137,7 @@ def main():
 
             case 1:
                 print("\nIngreso manual\n")
-                A = ingresar_conjunto("A")
+                A = ingresar_conjunto("A")#Se le llama a la función con el nombre de A para que la función pueda distinguir entre un conjunto y otro
                 B = ingresar_conjunto("B")
                 mostrar_conjuntos(A, B)
                 cardinalidad(A, B)
