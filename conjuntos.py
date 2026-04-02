@@ -93,6 +93,67 @@ def menu_principal() -> int:
             print("Ingresa un número.")
 
 
+def diferencia_simetrica(A: set, B: set):  #recibe dos conjuntos A y B
+    return A ^ B  #elementos que están en A o en B pero no en ambos
+#La diferencia simétrica devuelve los elementos que pertenecen a uno de los conjuntos pero no a los dos al mismo tiempo.
+
+def complemento_A(A: set, B: set):  # complemento de A respecto a B
+    return B - A  # devuelve los elementos que están en B pero no en A
+#El complemento de A toma los elementos de B que no están en A.
+
+def complemento_B(A: set, B: set):  
+    return A - B  # Devuelve los elementos que están en A pero no en B
+#El complemento de B toma los elementos de A que no están en B.
+
+
+def producto_cartesiano(A: set, B: set):  # producto cartesiano entre los conjuntos A y B
+    producto = set()  # Se crea un conjunto vacío donde se almacenarán los pares ordenados
+
+    for a in A:  # Se recorre cada elemento de A
+        for b in B:  # Por cada A se recorren todos los de B
+            producto.add((a, b))  # Se crea un par ordenado (a,b) y se agrega al conjunto producto
+
+    return producto  #devuelve conjunto con todos los pares ordenados 
+
+'''
+A = {1,2}
+B = {3}
+A × B = {(1,3),(2,3)}
+'''
+
+
+
+def analisis_propiedades(R, conjunto):  # r cumple ciertas propiedades 
+
+    reflexiva = True  # Se asume que relación es reflexiva
+    for a in conjunto:  # Se recorre cada elemento 
+        if (a, a) not in R:  # Se verifica si el par (a,a) está en la relación
+            reflexiva = False  # 
+            break  
+
+    simetrica = True  # Se asume que la relación es simétrica
+    for (a, b) in R:  # Se recorren todos los pares ordenados de la relación
+        if (b, a) not in R:  
+            simetrica = False  
+            break  
+
+    transitiva = True  # Se asume que la relación es transitiva
+    for (a, b) in R:  # Se recorre cada par de la relación
+        for (c, d) in R:  # Se compara con todos los demás pares
+            if b == c and (a, d) not in R:  
+                transitiva = False  
+                break  
+
+    print("Reflexiva:", reflexiva) 
+    print("Simétrica:", simetrica)  
+    print("Transitiva:", transitiva)  
+
+'''
+Primero se genera el producto cartesiano para obtener la relación.
+Luego la función analiza si la relación cumple tres propiedades matemáticas:
+reflexiva, simétrica y transitiva, verificando las condiciones de cada una dentro de la relación.
+'''
+
 def menu_operaciones_aleatorias() -> int:
     print("\nMenú de operaciones (esqueleto)")
     print("1. Intersección de A B")
@@ -155,13 +216,13 @@ def main():
                         case 4:
                             print("La diferencia de B - A es: ", diferencia(set(B), set(A)))
                         case 5:
-                            pass
+                            print("Diferencia simétrica:", diferencia_simetrica(set(A), set(B))) 
                         case 6:
-                            pass
+                            print("Complemento de A:", complemento_A(set(A), set(B)))
                         case 7:
-                            pass
+                            print("Complemento de B:", complemento_B(set(A), set(B)))
                         case 8:
-                            pass
+                            print("Producto cartesiano A x B:", producto_cartesiano(set(A), set(B)))
                         case 9:
                             pass
                         case 10:
@@ -177,9 +238,14 @@ def main():
                         case 15:
                             pass
                         case 16:
-                            pass
+                           R = producto_cartesiano(set(A), set(B))
+                           print("Relación A x B:", R)
+                           analisis_propiedades(R, set(A))
                         case 17:
-                            pass
+                            R = producto_cartesiano(set(B), set(A))
+                            print("Relación B x A:", R)
+                            analisis_propiedades(R, set(B))
+
                         case 18:
                             pass
                         case 19:
@@ -209,13 +275,13 @@ def main():
                         case 4:
                             print("La diferencia de B - A es: ", diferencia(set(B), set(A)))
                         case 5:
-                            pass
+                            print("Diferencia simétrica:", diferencia_simetrica(set(A), set(B))) 
                         case 6:
-                            pass
+                            print("Complemento de A:", complemento_A(set(A), set(B)))
                         case 7:
-                            pass
+                            print("Complemento de B:", complemento_B(set(A), set(B)))
                         case 8:
-                            pass
+                            print("Producto cartesiano A x B:", producto_cartesiano(set(A), set(B)))
                         case 9:
                             pass
                         case 10:
@@ -231,9 +297,13 @@ def main():
                         case 15:
                             pass
                         case 16:
-                            pass
+                           R = producto_cartesiano(set(A), set(B))
+                           print("Relación A x B:", R)
+                           analisis_propiedades(R, set(A))
                         case 17:
-                            pass
+                            R = producto_cartesiano(set(B), set(A))
+                            print("Relación B x A:", R)
+                            analisis_propiedades(R, set(B))
                         case 18:
                             pass
                         case 19:
