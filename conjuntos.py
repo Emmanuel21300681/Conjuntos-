@@ -154,6 +154,51 @@ Luego la función analiza si la relación cumple tres propiedades matemáticas:
 reflexiva, simétrica y transitiva, verificando las condiciones de cada una dentro de la relación.
 '''
 
+"""
+En la función conjunto_potencia se recibe un conjunto y se genera su conjunto potencia P(C).
+El conjunto potencia es una colección de todos los subconjuntos posibles de un conjunto dado, 
+incluyendo el conjunto vacío y el conjunto mismo. Se inicia con una lista que contiene 
+el conjunto vacío y se itera sobre cada elemento para ir generando las combinaciones.
+"""
+def conjunto_potencia(conjunto: set) -> list:
+    lista_elementos = list(conjunto)
+    potencia = [[]]  # Iniciamos con el conjunto vacío
+    
+    for elemento in lista_elementos:
+        nuevos_subconjuntos = []
+        for subconjunto in potencia:
+            # Por cada subconjunto existente, creamos uno nuevo agregando el elemento actual
+            nuevos_subconjuntos.append(subconjunto + [elemento])
+        # Extendemos la lista original con los nuevos subconjuntos generados
+        potencia.extend(nuevos_subconjuntos)
+        
+    # Convertimos las listas internas a tuplas para que puedan ser visualizadas 
+    # de manera ordenada como elementos inmutables, simulando el comportamiento de subconjuntos.
+    return [tuple(sub) for sub in potencia]
+
+"""
+La función cardinalidad_individual toma un conjunto y devuelve un número entero
+que representa la cantidad de elementos únicos que lo conforman. 
+Se utiliza la función integrada len() de Python sobre la estructura de datos set.
+"""
+def cardinalidad_individual(conjunto: set) -> int:
+    cardinalidad = len(conjunto)
+    return cardinalidad
+
+"""
+Esta función toma un conjunto original (que en el caso 19 será un producto cartesiano) 
+y genera un subconjunto aleatorio del mismo.
+Utiliza random.randint para determinar el tamaño del subconjunto y random.sample 
+para extraer los elementos aleatoriamente.
+"""
+def subconjunto_aleatorio(conjunto_original: set) -> set:
+    lista_elementos = list(conjunto_original)
+    # Se define un tamaño aleatorio entre 0 y el total de elementos del conjunto original
+    cantidad = random.randint(0, len(lista_elementos))
+    # random.sample toma 'cantidad' elementos sin repetirlos
+    subconjunto = random.sample(lista_elementos, cantidad)
+    return set(subconjunto)
+
 def menu_operaciones_aleatorias() -> int:
     print("\nMenú de operaciones (esqueleto)")
     print("1. Intersección de A B")
@@ -232,11 +277,14 @@ def main():
                         case 12:
                             pass
                         case 13:
-                            pass
+                            # Se llama a la función pasándole el conjunto B convertido en set
+                            print("El conjunto potencia P(B) es: ", conjunto_potencia(set(B)))
                         case 14:
-                            pass
+                            # Se calcula la cantidad de elementos del conjunto A
+                            print("La cardinalidad de |A| es: ", cardinalidad_individual(set(A)))
                         case 15:
-                            pass
+                            # Se calcula la cantidad de elementos del conjunto B
+                            print("La cardinalidad de |B| es: ", cardinalidad_individual(set(B)))
                         case 16:
                            R = producto_cartesiano(set(A), set(B))
                            print("Relación A x B:", R)
@@ -249,7 +297,19 @@ def main():
                         case 18:
                             pass
                         case 19:
-                            pass
+                            """
+                            Para el análisis del subconjunto aleatorio de B x B:
+                            1. Se obtiene el producto cartesiano completo de B x B.
+                            2. Se extrae un subconjunto aleatorio de esa relación.
+                            3. Se imprimen los datos y se mandan a la función de análisis.
+                            """
+                            producto_BxB = producto_cartesiano(set(B), set(B))
+                            sub_relacion = subconjunto_aleatorio(producto_BxB)
+                            print("Producto cartesiano completo B x B:", producto_BxB)
+                            print(f"\nSubconjunto aleatorio a analizar (tamaño {len(sub_relacion)}):", sub_relacion)
+                            print("\nAnálisis de propiedades para el subconjunto:")
+                            # Se analiza el subconjunto generado contra el conjunto base B
+                            analisis_propiedades(sub_relacion, set(B))
                         case 0:
                             print("Regresando al menú principal...")
                             break
@@ -291,11 +351,14 @@ def main():
                         case 12:
                             pass
                         case 13:
-                            pass
+                            # Se llama a la función pasándole el conjunto B convertido en set
+                            print("El conjunto potencia P(B) es: ", conjunto_potencia(set(B)))
                         case 14:
-                            pass
+                            # Se calcula la cantidad de elementos del conjunto A
+                            print("La cardinalidad de |A| es: ", cardinalidad_individual(set(A)))
                         case 15:
-                            pass
+                            # Se calcula la cantidad de elementos del conjunto B
+                            print("La cardinalidad de |B| es: ", cardinalidad_individual(set(B)))
                         case 16:
                            R = producto_cartesiano(set(A), set(B))
                            print("Relación A x B:", R)
@@ -307,7 +370,19 @@ def main():
                         case 18:
                             pass
                         case 19:
-                            pass
+                            """
+                            Para el análisis del subconjunto aleatorio de B x B:
+                            1. Se obtiene el producto cartesiano completo de B x B.
+                            2. Se extrae un subconjunto aleatorio de esa relación.
+                            3. Se imprimen los datos y se mandan a la función de análisis.
+                            """
+                            producto_BxB = producto_cartesiano(set(B), set(B))
+                            sub_relacion = subconjunto_aleatorio(producto_BxB)
+                            print("Producto cartesiano completo B x B:", producto_BxB)
+                            print(f"\nSubconjunto aleatorio a analizar (tamaño {len(sub_relacion)}):", sub_relacion)
+                            print("\nAnálisis de propiedades para el subconjunto:")
+                            # Se analiza el subconjunto generado contra el conjunto base B
+                            analisis_propiedades(sub_relacion, set(B))
                         case 0:
                             print("Regresando al menú principal...")
                             break
