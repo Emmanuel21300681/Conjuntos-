@@ -269,13 +269,21 @@ def main():
                         case 8:
                             print("Producto cartesiano A x B:", producto_cartesiano(set(A), set(B)))
                         case 9:
-                            pass
+                            # Se calcula el producto cartesiano de B por A
+                            # El resultado son pares ordenados donde el primer elemento es de B y el segundo de A
+                            print("Producto cartesiano B x A:", producto_cartesiano(set(B), set(A)))
                         case 10:
-                            pass
+                            # Se calcula el producto cartesiano de A por sí mismo (A x A)
+                            # Genera todas las combinaciones posibles de elementos de A con elementos de A
+                            print("Producto cartesiano A x A:", producto_cartesiano(set(A), set(A)))
                         case 11:
-                            pass
+                            # Se calcula el producto cartesiano de B por sí mismo (B x B)
+                            # Es la base para analizar relaciones internas en el conjunto B
+                            print("Producto cartesiano B x B:", producto_cartesiano(set(B), set(B)))
                         case 12:
-                            pass
+                            # Se genera el conjunto potencia de A utilizando la función conjunto_potencia
+                            # Esto muestra todos los subconjuntos posibles que se pueden formar con los elementos de A
+                            print("El conjunto potencia P(A) es: ", conjunto_potencia(set(A)))
                         case 13:
                             # Se llama a la función pasándole el conjunto B convertido en set
                             print("El conjunto potencia P(B) es: ", conjunto_potencia(set(B)))
@@ -293,9 +301,14 @@ def main():
                             R = producto_cartesiano(set(B), set(A))
                             print("Relación B x A:", R)
                             analisis_propiedades(R, set(B))
-
                         case 18:
-                            pass
+                            # 1. Se genera primero el producto cartesiano completo A x A como relación base
+                            # 2. Se imprime la relación obtenida
+                            # 3. Se envía a la función analisis_propiedades para evaluar si es reflexiva, simétrica y transitiva
+                            R = producto_cartesiano(set(A), set(A))
+                            print("Relación A x A:", R)
+                            print("\nAnálisis de propiedades para A x A:")
+                            analisis_propiedades(R, set(A))
                         case 19:
                             """
                             Para el análisis del subconjunto aleatorio de B x B:
@@ -343,13 +356,21 @@ def main():
                         case 8:
                             print("Producto cartesiano A x B:", producto_cartesiano(set(A), set(B)))
                         case 9:
-                            pass
+                            # Se calcula el producto cartesiano de B por A
+                            # El resultado son pares ordenados donde el primer elemento es de B y el segundo de A
+                            print("Producto cartesiano B x A:", producto_cartesiano(set(B), set(A)))
                         case 10:
-                            pass
+                            # Se calcula el producto cartesiano de A por sí mismo (A x A)
+                            # Genera todas las combinaciones posibles de elementos de A con elementos de A
+                            print("Producto cartesiano A x A:", producto_cartesiano(set(A), set(A)))
                         case 11:
-                            pass
+                            # Se calcula el producto cartesiano de B por sí mismo (B x B)
+                            # Es la base para analizar relaciones internas en el conjunto B
+                            print("Producto cartesiano B x B:", producto_cartesiano(set(B), set(B)))
                         case 12:
-                            pass
+                            # Se genera el conjunto potencia de A utilizando la función conjunto_potencia
+                            # Esto muestra todos los subconjuntos posibles que se pueden formar con los elementos de A
+                            print("El conjunto potencia P(A) es: ", conjunto_potencia(set(A)))
                         case 13:
                             # Se llama a la función pasándole el conjunto B convertido en set
                             print("El conjunto potencia P(B) es: ", conjunto_potencia(set(B)))
@@ -368,7 +389,13 @@ def main():
                             print("Relación B x A:", R)
                             analisis_propiedades(R, set(B))
                         case 18:
-                            pass
+                            # 1. Se genera primero el producto cartesiano completo A x A como relación base
+                            # 2. Se imprime la relación obtenida
+                            # 3. Se envía a la función analisis_propiedades para evaluar si es reflexiva, simétrica y transitiva
+                            R = producto_cartesiano(set(A), set(A))
+                            print("Relación A x A:", R)
+                            print("\nAnálisis de propiedades para A x A:")
+                            analisis_propiedades(R, set(A))
                         case 19:
                             """
                             Para el análisis del subconjunto aleatorio de B x B:
