@@ -1,6 +1,13 @@
 import random
 
 
+def mostrar_resultado(conjunto):
+    if len(conjunto) == 0:
+        print("∅")
+    else:
+        print(conjunto)
+
+
 def ingresar_conjunto(nombre: str) -> list:
     while True:#Se usa un while true para que el usuario pueda ingresar el número de elementos del conjunto
         try:#Aquí se verifica que el usuario ingrese un número entero válido 
@@ -252,80 +259,91 @@ def main():
                     opcion_submenu = menu_operaciones_aleatorias()
 
                     match opcion_submenu:
-                        case 1:
-                            print("La intersección de A y B es: ", interseccion(set(A), set(B)))
-                        case 2:
-                            print("La unión de A y B es: ", union(set(A), set(B)))
-                        case 3:
-                            print("La diferencia de A - B es: ", diferencia(set(A), set(B)))
-                        case 4:
-                            print("La diferencia de B - A es: ", diferencia(set(B), set(A)))
-                        case 5:
-                            print("Diferencia simétrica:", diferencia_simetrica(set(A), set(B))) 
-                        case 6:
-                            print("Complemento de A:", complemento_A(set(A), set(B)))
-                        case 7:
-                            print("Complemento de B:", complemento_B(set(A), set(B)))
-                        case 8:
-                            print("Producto cartesiano A x B:", producto_cartesiano(set(A), set(B)))
-                        case 9:
-                            # Se calcula el producto cartesiano de B por A
-                            # El resultado son pares ordenados donde el primer elemento es de B y el segundo de A
-                            print("Producto cartesiano B x A:", producto_cartesiano(set(B), set(A)))
-                        case 10:
-                            # Se calcula el producto cartesiano de A por sí mismo (A x A)
-                            # Genera todas las combinaciones posibles de elementos de A con elementos de A
-                            print("Producto cartesiano A x A:", producto_cartesiano(set(A), set(A)))
-                        case 11:
-                            # Se calcula el producto cartesiano de B por sí mismo (B x B)
-                            # Es la base para analizar relaciones internas en el conjunto B
-                            print("Producto cartesiano B x B:", producto_cartesiano(set(B), set(B)))
-                        case 12:
-                            # Se genera el conjunto potencia de A utilizando la función conjunto_potencia
-                            # Esto muestra todos los subconjuntos posibles que se pueden formar con los elementos de A
-                            print("El conjunto potencia P(A) es: ", conjunto_potencia(set(A)))
-                        case 13:
-                            # Se llama a la función pasándole el conjunto B convertido en set
-                            print("El conjunto potencia P(B) es: ", conjunto_potencia(set(B)))
-                        case 14:
-                            # Se calcula la cantidad de elementos del conjunto A
-                            print("La cardinalidad de |A| es: ", cardinalidad_individual(set(A)))
-                        case 15:
-                            # Se calcula la cantidad de elementos del conjunto B
-                            print("La cardinalidad de |B| es: ", cardinalidad_individual(set(B)))
-                        case 16:
+                         case 1:
+                          print("La intersección de A y B es:", end=" ")
+                          mostrar_resultado(interseccion(set(A), set(B)))
+
+                         case 2:
+                          print("La unión de A y B es:", end=" ")
+                          mostrar_resultado(union(set(A), set(B)))
+
+                         case 3:
+                          print("La diferencia de A - B es:", end=" ")
+                          mostrar_resultado(diferencia(set(A), set(B)))
+
+                         case 4:
+                          print("La diferencia de B - A es:", end=" ")
+                          mostrar_resultado(diferencia(set(B), set(A)))
+
+                         case 5:
+                          print("Diferencia simétrica:", end=" ")
+                          mostrar_resultado(diferencia_simetrica(set(A), set(B)))
+
+                         case 6:
+                          print("Complemento de A:", end=" ")
+                          mostrar_resultado(complemento_A(set(A), set(B)))
+
+                         case 7:
+                          print("Complemento de B:", end=" ")
+                          mostrar_resultado(complemento_B(set(A), set(B)))
+
+                         case 8:
+                          print("Producto cartesiano A x B:", end=" ")
+                          mostrar_resultado(producto_cartesiano(set(A), set(B)))
+
+                         case 9:
+                          print("Producto cartesiano B x A:", end=" ")
+                          mostrar_resultado(producto_cartesiano(set(B), set(A)))
+
+                         case 10:
+                          print("Producto cartesiano A x A:", end=" ")
+                          mostrar_resultado(producto_cartesiano(set(A), set(A)))
+
+                         case 11:
+                          print("Producto cartesiano B x B:", end=" ")
+                          mostrar_resultado(producto_cartesiano(set(B), set(B)))
+
+                         case 12:
+                          print("El conjunto potencia P(A) es:", conjunto_potencia(set(A)))
+
+                         case 13:
+                          print("El conjunto potencia P(B) es:", conjunto_potencia(set(B)))
+
+                         case 14:
+                          print("La cardinalidad de |A| es:", cardinalidad_individual(set(A)))
+
+                         case 15:
+                          print("La cardinalidad de |B| es:", cardinalidad_individual(set(B)))
+
+                         case 16:
                            R = producto_cartesiano(set(A), set(B))
                            print("Relación A x B:", R)
                            analisis_propiedades(R, set(A))
-                        case 17:
-                            R = producto_cartesiano(set(B), set(A))
-                            print("Relación B x A:", R)
-                            analisis_propiedades(R, set(B))
-                        case 18:
-                            # 1. Se genera primero el producto cartesiano completo A x A como relación base
-                            # 2. Se imprime la relación obtenida
-                            # 3. Se envía a la función analisis_propiedades para evaluar si es reflexiva, simétrica y transitiva
-                            R = producto_cartesiano(set(A), set(A))
-                            print("Relación A x A:", R)
-                            print("\nAnálisis de propiedades para A x A:")
-                            analisis_propiedades(R, set(A))
-                        case 19:
-                            """
-                            Para el análisis del subconjunto aleatorio de B x B:
-                            1. Se obtiene el producto cartesiano completo de B x B.
-                            2. Se extrae un subconjunto aleatorio de esa relación.
-                            3. Se imprimen los datos y se mandan a la función de análisis.
-                            """
-                            producto_BxB = producto_cartesiano(set(B), set(B))
-                            sub_relacion = subconjunto_aleatorio(producto_BxB)
-                            print("Producto cartesiano completo B x B:", producto_BxB)
-                            print(f"\nSubconjunto aleatorio a analizar (tamaño {len(sub_relacion)}):", sub_relacion)
-                            print("\nAnálisis de propiedades para el subconjunto:")
-                            # Se analiza el subconjunto generado contra el conjunto base B
-                            analisis_propiedades(sub_relacion, set(B))
-                        case 0:
-                            print("Regresando al menú principal...")
-                            break
+
+                         case 17:
+                          R = producto_cartesiano(set(B), set(A))
+                          print("Relación B x A:", R)
+                          analisis_propiedades(R, set(B))
+
+                         case 18:
+                           R = producto_cartesiano(set(A), set(A))
+                           print("Relación A x A:", R)
+                           print("\nAnálisis de propiedades para A x A:")
+                           analisis_propiedades(R, set(A))
+
+                         case 19:
+                          producto_BxB = producto_cartesiano(set(B), set(B))
+                          sub_relacion = subconjunto_aleatorio(producto_BxB)
+
+                          print("Producto cartesiano completo B x B:", producto_BxB)
+                          print(f"\nSubconjunto aleatorio a analizar (tamaño {len(sub_relacion)}):", sub_relacion)
+                          print("\nAnálisis de propiedades para el subconjunto:")
+                          analisis_propiedades(sub_relacion, set(B))
+
+                         case 0:
+                          print("Regresando al menú principal...")
+                          break
+                        
 
 
             case 2:
@@ -340,33 +358,48 @@ def main():
 
                     match opcion_submenu:
                         case 1:
-                            print("La intersección de A y B es: ", interseccion(set(A), set(B)))
+                         print("La intersección de A y B es:", end=" ")
+                         mostrar_resultado(interseccion(set(A), set(B)))
+
                         case 2:
-                            print("La unión de A y B es: ", union(set(A), set(B)))
+                         print("La unión de A y B es:", end=" ")
+                         mostrar_resultado(union(set(A), set(B)))
+
                         case 3:
-                            print("La diferencia de A - B es: ", diferencia(set(A), set(B)))
+                         print("La diferencia de A - B es:", end=" ")
+                         mostrar_resultado(diferencia(set(A), set(B)))
+
                         case 4:
-                            print("La diferencia de B - A es: ", diferencia(set(B), set(A)))
+                         print("La diferencia de B - A es:", end=" ")
+                         mostrar_resultado(diferencia(set(B), set(A)))
+
                         case 5:
-                            print("Diferencia simétrica:", diferencia_simetrica(set(A), set(B))) 
+                         print("Diferencia simétrica:", end=" ")
+                         mostrar_resultado(diferencia_simetrica(set(A), set(B)))
+
                         case 6:
-                            print("Complemento de A:", complemento_A(set(A), set(B)))
+                         print("Complemento de A:", end=" ")
+                         mostrar_resultado(complemento_A(set(A), set(B)))
+
                         case 7:
-                            print("Complemento de B:", complemento_B(set(A), set(B)))
+                         print("Complemento de B:", end=" ")
+                         mostrar_resultado(complemento_B(set(A), set(B)))
+
                         case 8:
-                            print("Producto cartesiano A x B:", producto_cartesiano(set(A), set(B)))
+                         print("Producto cartesiano A x B:", end=" ")
+                         mostrar_resultado(producto_cartesiano(set(A), set(B)))
+
                         case 9:
-                            # Se calcula el producto cartesiano de B por A
-                            # El resultado son pares ordenados donde el primer elemento es de B y el segundo de A
-                            print("Producto cartesiano B x A:", producto_cartesiano(set(B), set(A)))
+                         print("Producto cartesiano B x A:", end=" ")
+                         mostrar_resultado(producto_cartesiano(set(B), set(A)))
+
                         case 10:
-                            # Se calcula el producto cartesiano de A por sí mismo (A x A)
-                            # Genera todas las combinaciones posibles de elementos de A con elementos de A
-                            print("Producto cartesiano A x A:", producto_cartesiano(set(A), set(A)))
+                         print("Producto cartesiano A x A:", end=" ")
+                         mostrar_resultado(producto_cartesiano(set(A), set(A)))
+
                         case 11:
-                            # Se calcula el producto cartesiano de B por sí mismo (B x B)
-                            # Es la base para analizar relaciones internas en el conjunto B
-                            print("Producto cartesiano B x B:", producto_cartesiano(set(B), set(B)))
+                         print("Producto cartesiano B x B:", end=" ")
+                         mostrar_resultado(producto_cartesiano(set(B), set(B)))
                         case 12:
                             # Se genera el conjunto potencia de A utilizando la función conjunto_potencia
                             # Esto muestra todos los subconjuntos posibles que se pueden formar con los elementos de A
